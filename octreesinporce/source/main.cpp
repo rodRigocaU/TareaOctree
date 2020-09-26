@@ -379,7 +379,7 @@ int main()
     
     */
 
-
+    //REPRESENTA LOS LIMITES DE NUESTRO CUBO EL PUNTO MAXIMO  Y EL MINIMO
     octree<int> tree(1, 1, 1, 40, 40, 40);
     srand(time(NULL));
 
