@@ -222,7 +222,7 @@ public:
         if (find(x_, y_, z_, aux, pos, midx_, midy_, midz_))
         {
             
-            //BORRAMOS DESDE CUALQUIER HIJO
+            //BORRAMOS EL NODO APARTIR DEL ARBOL DEVUELTO POR FIND
             delete(aux->children[pos]);
             aux->children[pos] = new octree<T>();
             
