@@ -289,7 +289,7 @@ class octree
                 }
                 else
                 {
-                    //BORRAMOS DESDE CUALQUIER HIJO
+                    //BORRAMOS EL HIJO APARTIR DEL ARBOL DEVUELTO POR FIND
                     delete(aux->children[pos]);
                     aux->children[pos] = new octree<T>();
                 }
