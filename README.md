@@ -4,7 +4,9 @@
 COMO COMPILARLO:
 
 -cmake .
+
 -cmake --build .
+
 -debug/octree_con o debug/octree_sin  (DEPENDE DE CUAL COMPILEMOS PRIMERO)
 
 ACLARACIONES:
