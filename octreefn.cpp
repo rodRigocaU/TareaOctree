@@ -452,50 +452,58 @@ public:
         stack<int> hijos;
         int idHijo = 0;
         hijos.push(0);
-
-        DrawableOctant oct1(Point(this->limin->x, this->limin->y, this->limin->z), Point(this->limax->x, this->limax->y, this->limax->z));
-        octants.push_back(oct1);
         S.push(this);
+        DrawableOctant oct1(Point(S.top()->limin->x, S.top()->limin->y, S.top()->limin->z), Point(S.top()->limax->x, S.top()->limax->y, S.top()->limax->z));
+        octants.push_back(oct1);
+        
         //octants.push_back(DrawableOctant())
         //cout << S.top()->children[hijos.top()]->points << '\n';
         //GUARDAR EN EL VECTOR PARA DIBUJAR
        
-        /*while (!S.empty())
+        while (!S.empty() && !hijos.empty())
         {
-            //cout << "a" << '\n';
-            //cout << i++ << '\n';
-            if (hijos.top() >= 8)
+            //cout << hijos.top() << '\n';
+            if (hijos.top() == 8)
             {
                 // S.pop();
                  //hijos.pop();
+                //cout << "ENTRE" << '\n';
                 S.pop();
                 hijos.pop();
-                idHijo = hijos.top() + 1;
-                hijos.pop();
-                hijos.push(idHijo);
-               
+                if (!hijos.empty())
+                {
+                    hijos.top() += 1;
+                }               
             }
-            else if (S.top()->children[hijos.top()]->points != nullptr)
-            {
-               // cout << "ENTRE" << '\n';
-                S.pop();
-                idHijo = hijos.top() + 1;
-                hijos.pop();
-                hijos.push(idHijo);
-                
-            }
-            else if (S.top()->children[hijos.top()]->points == nullptr)
+            /* else if (S.top()->children[hijos.top()]->points != nullptr)
+        {
+           //cout << "ENTRE" << '\n';
+            //S.pop();
+            //hijos.top() += 1;
+            hijos.top()
+            hijos.pop();
+
+        }*/
+             else if (S.top()->children[hijos.top()]->points == nullptr)
             {
                 //cout << "ENTRE" << '\n';
                 //octants.push_back(Point(children[idHijo]->limin->x, children[idHijo]->limin->y, children[idHijo]->limin->z), Point(children[idHijo]->limax->x, children[idHijo]->limax->y, children[idHijo]->limax->z));
                 //Octant oct1(Point(children[idHijo]->limin->x, children[idHijo]->limin->y, children[idHijo]->limin->z), Point(children[idHijo]->limax->x, children[idHijo]->limax->y, children[idHijo]->limax->z));
                 //octants.push_back(oct1);
-                DrawableOctant oct1(Point(S.top()->children[idHijo]->limin->x, S.top()->children[idHijo]->limin->y, S.top()->children[idHijo]->limin->z), Point(S.top()->children[idHijo]->limax->x, S.top()->children[idHijo]->limax->y, S.top()->children[idHijo]->limax->z));
+                DrawableOctant oct1(Point(S.top()->children[hijos.top()]->limin->x, S.top()->children[hijos.top()]->limin->y, S.top()->children[hijos.top()]->limin->z), Point(S.top()->children[hijos.top()]->limax->x, S.top()->children[hijos.top()]->limax->y, S.top()->children[hijos.top()]->limax->z));
                 octants.push_back(oct1);
-                S.push(children[idHijo]);
+                S.push(S.top()->children[hijos.top()]);
                 hijos.push(0);
             }
-        }*/
+            else
+            {
+                //cout << "ENTRE" << '\n';
+                //S.pop();
+                //hijos.top() += 1;
+                hijos.top() += 1;
+            }
+          
+        }
     }
   };
 
@@ -670,7 +678,7 @@ void runOPENGL(int argc, char** argv) {
     glutInitWindowSize(640, 480);
     glutInitWindowPosition(0, 0);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-    glutCreateWindow("Range Octree Visualization");
+    glutCreateWindow("Visualizador");
     init(1024, 768);
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
